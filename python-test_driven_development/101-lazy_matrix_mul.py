@@ -21,14 +21,13 @@ def lazy_matrix_mul(m_a, m_b):
             "2 (dim 1) != 1 (dim 0)"
         )
 
-    for row in m_a:
-        for item in row:
-            if isinstance(item, str):
-                raise TypeError("invalid data type for einsum")
-
-    for row in m_b:
-        for item in row:
-            if isinstance(item, str):
-                raise TypeError("invalid data type for einsum")
-
-    return np.matmul(m_a, m_b)
+    try:
+        return np.matmul(m_a, m_b)
+    except ValueError as err:
+        if "setting an array element with a sequence" in str(err):
+            raise ValueError("setting an array element with a sequence.")
+        raise err
+    except TypeError as err:
+        if "ufunc" in str(err):
+            raise TypeError("invalid data type for einsum")
+        raise err
