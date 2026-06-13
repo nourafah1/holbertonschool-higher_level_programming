@@ -2,7 +2,7 @@
 
 >>> text_indentation("Hello. World?")
 Hello.
-<BLANKLINE>
+
 World?
 
 >>> text_indentation("Hello: World")
