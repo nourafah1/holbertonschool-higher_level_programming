@@ -17,3 +17,5 @@ ZeroDivisionError: division by zero
 Traceback (most recent call last):
 ...
 TypeError: div must be a number
+>>> matrix_divided([[1, 2, 3], [4, 5, 6]], float("inf"))
+[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
