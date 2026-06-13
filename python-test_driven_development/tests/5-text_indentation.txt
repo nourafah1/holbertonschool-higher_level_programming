@@ -4,6 +4,7 @@
 Hello.
 <BLANKLINE>
 World?
+<BLANKLINE>
 
 >>> text_indentation("Hello: World")
 Hello:
@@ -17,6 +18,7 @@ Hello
 A?
 <BLANKLINE>
 B.
+<BLANKLINE>
 
 >>> text_indentation(None)
 Traceback (most recent call last):
