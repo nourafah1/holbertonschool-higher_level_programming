@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Lists all states and their related cities using one query."""
+"""Lists all states and their related cities."""
 
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy.orm import joinedload, sessionmaker
+from sqlalchemy.orm import sessionmaker
 from relationship_state import Base, State
 from relationship_city import City
 
@@ -21,12 +21,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = (
-        session.query(State)
-        .options(joinedload(State.cities))
-        .order_by(State.id)
-        .all()
-    )
+    states = session.query(State).order_by(State.id).all()
 
     for state in states:
         print("{}: {}".format(state.id, state.name))
