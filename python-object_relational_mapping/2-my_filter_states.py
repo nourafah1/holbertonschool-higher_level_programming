@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Displays all states matching the user input."""
+"""Lists states matching a name provided by the user."""
 
 import MySQLdb
 import sys
@@ -16,11 +16,11 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(
-        sys.argv[4]
+    cursor.execute(
+        "SELECT * FROM states "
+        "WHERE name = BINARY '{}' "
+        "ORDER BY id ASC".format(sys.argv[4])
     )
-
-    cursor.execute(query)
 
     for row in cursor.fetchall():
         print(row)
