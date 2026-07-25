@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all states from a MySQL database."""
+"""This module lists all states stored in a MySQL database."""
 
 import sys
 import MySQLdb
@@ -11,16 +11,14 @@ if __name__ == "__main__":
         port=3306,
         user=sys.argv[1],
         passwd=sys.argv[2],
-        db=sys.argv[3]
+        db=sys.argv[3],
+        charset="utf8"
     )
 
     cursor = connection.cursor()
+    cursor.execute("SELECT id, name FROM states ORDER BY id ASC")
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
-
-    states = cursor.fetchall()
-
-    for state in states:
+    for state in cursor.fetchall():
         print(state)
 
     cursor.close()
