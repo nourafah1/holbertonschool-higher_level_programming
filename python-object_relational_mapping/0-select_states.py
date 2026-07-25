@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Lists all states from a MySQL database."""
+"""This module lists all states from a MySQL database."""
 
-import MySQLdb
 import sys
+import MySQLdb
 
 
 if __name__ == "__main__":
@@ -16,8 +16,9 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    rows = cursor.fetchall()
 
-    for row in cursor.fetchall():
+    for row in rows:
         print(row)
 
     cursor.close()
